@@ -24,7 +24,8 @@ public class User implements UserDetails {
 
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
+               inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
     public User() {
@@ -40,7 +41,8 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User(String name, String lastName, Integer age, String username, String password, Boolean expired, Boolean locked, Collection<Role> roles) {
+    public User(String name, String lastName, Integer age, String username, String password,
+                Boolean expired, Boolean locked, Collection<Role> roles) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -140,17 +142,27 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(getId(), user.getId()) && Objects.equals(getName(), user.getName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getAge(), user.getAge()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(expired, user.expired) && Objects.equals(locked, user.locked) && Objects.equals(getRoles(), user.getRoles());
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getName(), user.getName()) &&
+               Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getAge(), user.getAge()) &&
+               Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword()) &&
+               Objects.equals(expired, user.expired) && Objects.equals(locked, user.locked) && Objects.equals(getRoles(),
+               user.getRoles());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getLastName(), getAge(), getUsername(), getPassword(), expired, locked, getRoles());
+        return Objects.hash(getId(), getName(), getLastName(), getAge(),
+               getUsername(), getPassword(), expired, locked, getRoles());
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + ", age=" + age + ", username='" + username + '\'' + ", password='" + password + '\'' + ", expired=" + expired + ", locked=" + locked + ", roles=" + roles + ", authorities=" + getAuthorities() + ", accountNonExpired=" + isAccountNonExpired() + ", accountNonLocked=" + isAccountNonLocked() + ", credentialsNonExpired=" + isCredentialsNonExpired() + ", enabled=" + isEnabled() + '}';
+        return "User{" + "id=" + id + ", name='" + name + '\'' + ", " +
+                "lastName='" + lastName + '\'' + ", age=" + age + ", username='" + username + '\'' +
+                ", password='" + password + '\'' + ", expired=" + expired + ", locked=" + locked + "," +
+                " roles=" + roles + ", authorities=" + getAuthorities() + ", accountNonExpired=" +
+                isAccountNonExpired() + ", accountNonLocked=" + isAccountNonLocked() + ", credentialsNonExpired=" +
+                isCredentialsNonExpired() + ", enabled=" + isEnabled() + '}';
     }
 
 
